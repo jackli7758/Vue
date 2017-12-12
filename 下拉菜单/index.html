@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可从外部关闭的下拉菜单</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="app" v-cloak>
+        <div class="main" v-clickoutside="handleClose">
+            <button @click="show=!show">游戏</button>
+            <div class="dropdown" v-show="show">
+                <p>王者荣耀</p>
+                <p>英雄联盟</p>
+                <p>绝地求生</p>
+                <p>星际争霸</p>
+            </div>
+        </div>
+    </div>
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="clickoutside.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
