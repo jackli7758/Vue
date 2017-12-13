@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <title>简单模拟聊天发送内容</title>
+</head>
+<body>
+<div id="app">
+    <ele></ele>
+</div>
+<script src="node_modules/vue/dist/vue.min.js"></script>
+<script type="text/javascript">
+    Vue.component('ele',{
+        render:function (createElement) {
+            let _this=this;
+            if(this.list.length){
+                var listNode=createElement('ul',this.list.map(function (item) {
+                    return createElement('li',item);
+                }));
+            }else{
+                var listNode=createElement('p','暂无聊天记录');
+            }
+            return createElement('div',[
+                listNode,
+                createElement('input',{
+                    attrs:{
+                        placeholder:'请输入内容，按回车键发送'
+                    },
+                    style:{
+                        width:'200px'
+                    },
+                    on:{
+                        keyup:function (event) {
+                            if(event.keyCode!==13) return;
+                            _this.list.push(event.target.value);
+                            event.target.value='';
+                        }
+                    }
+                })
+            ])
+        },
+        data:function () {
+            return{
+                value:'',
+                list:[]
+            }
+        }
+    });
+    let app=new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>
