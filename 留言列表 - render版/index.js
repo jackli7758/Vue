@@ -25,6 +25,9 @@ let app=new Vue({
             let name=this.list[index].name;
             this.message=this.username+' 回复@ '+name+': ';
             this.$refs.message.focus();
-        }
+        },
+        handleRemove:function (index) {
+            this.list.splice(index,1);//splice(要删除的第一项的索引,要删除的项数)
+            }
     }
 });

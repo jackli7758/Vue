@@ -34,7 +34,17 @@ Vue.component('list',{
                                 _this.handleReply(index);
                             }
                         }
-                    },'回复')
+                    },'回复'),
+                    h('a',{
+                        attrs:{
+                            class:'list-reply'
+                        },
+                        on:{
+                            click:function () {
+                                _this.handleRemove(index);
+                            }
+                        }
+                    },'删除')
             ])],);
             list.push(node);
             /*node格式如下：
@@ -43,6 +53,7 @@ Vue.component('list',{
                     <div class="list-msg">
                         <p>msg.message</p>
                         <a class="list-reply" @click="handleReply">回复</a>
+                        <a class="list-reply" @click="handleRemove">删除</a>
                     </div>
               </div>*/
         });
@@ -72,6 +83,9 @@ Vue.component('list',{
     methods:{
         handleReply:function (index) {
             this.$emit('reply',index);//触发reply（回复）事件，在#app父组件中处理
+        },
+        handleRemove:function (index) {
+            this.$emit('delete',index)//触发delete(删除)事件,在#app父组件中处理
         }
     }
 });
